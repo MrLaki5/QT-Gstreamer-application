@@ -20,10 +20,10 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Werror -std=c++11 -fstrict-aliasing -pedantic-errors -pedantic -Wno-deprecated-declarations -Wno-unused-variable")
 
-file(GLOB HEADER_FILES ${CMAKE_CURRENT_SOURCE_DIR}/include/*.h)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 file(GLOB SOURCE_FILES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
 
-add_executable(${PROJECT} ${HEADER_FILES} ${SOURCE_FILES} ${QT_RESOURCES})
+add_executable(${PROJECT} ${SOURCE_FILES} ${QT_RESOURCES})
 
 target_link_libraries(${PROJECT}
     Qt5::Widgets

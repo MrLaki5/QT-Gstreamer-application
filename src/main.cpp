@@ -1,10 +1,10 @@
 #include <QApplication>
-#include <QQmlApplicationEngine>
+
+#include "Gui_application.hpp"
 
 int main(int argc, char** argv)
 {
     QApplication app(argc, argv);
-    QQmlApplicationEngine engine;
-    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
+    Gui_application gui_application;
     return app.exec();
 }

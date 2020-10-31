@@ -1,7 +1,0 @@
-
-sudo apt-get install -y qtbase5-dev qtdeclarative5-dev qtquickcontrols2-5-dev qml-module-qtquick2 qml-module-qtquick-controls
-
-
-
-    #build-essential \
-    #cmake \

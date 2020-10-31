@@ -1,4 +1,4 @@
-## QUI-application
+## GUI-application
 Simple QT GUI application that is used as example of how to create QT application with cmake
 
 ### Requirements:

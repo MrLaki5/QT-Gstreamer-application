@@ -8,10 +8,20 @@ if [ ! -d "${ROOT_DIR}/build" ]
 then
     mkdir "${ROOT_DIR}/build"
 fi
+# Out build folder
+if [ ! -d "${ROOT_DIR}/build/out" ] 
+then
+    mkdir "${ROOT_DIR}/build/out"
+fi
+# Install build folder
+if [ ! -d "${ROOT_DIR}/build/install" ] 
+then
+    mkdir "${ROOT_DIR}/build/install"
+fi
 
 # Switch to build folder
-cd "${ROOT_DIR}/build"
+cd "${ROOT_DIR}/build/out"
 
 # Build
-cmake ..
-make
+cmake -DCMAKE_INSTALL_PREFIX=${ROOT_DIR}/build/install ../..
+make install

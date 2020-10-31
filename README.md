@@ -9,3 +9,15 @@ sudo apt-get install -y qtbase5-dev qtdeclarative5-dev qtquickcontrols2-5-dev qm
 # Other dependencies:
 sudo apt-get install -y build-essential cmake
 ```
+
+### Build project:
+``` bash
+cd <Root of project>
+./build.sh
+```
+
+### Run project:
+``` bash
+cd <Root of project>/build/install
+./GUI-application
+```

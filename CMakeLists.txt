@@ -1,15 +1,20 @@
 cmake_minimum_required(VERSION 2.8)
+
 set(PROJECT "GUI-application")
 project(${PROJECT})
 
 # 3rd party tools
 find_package(Qt5 COMPONENTS Widgets Qml Quick REQUIRED)
 
+# Qt5 includes
 include_directories(${Qt5Widgets_INCLUDE_DIRS} ${QtQml_INCLUDE_DIRS})
+# Qt5 required definitions
 add_definitions(${Qt5Widgets_DEFINITIONS} ${QtQml_DEFINITIONS} ${${Qt5Quick_DEFINITIONS}})
 qt5_add_resources(QT_RESOURCES qml.qrc)
 
+# Comipilation parameters for Qt5
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS}")
+# Aditional compiling steps for MOC RCC and UIC
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
@@ -25,3 +30,6 @@ target_link_libraries(${PROJECT}
     Qt5::Qml
     Qt5::Quick
 )
+
+# Install executable
+install(TARGETS ${PROJECT} DESTINATION ${CMAKE_INSTALL_PREFIX})

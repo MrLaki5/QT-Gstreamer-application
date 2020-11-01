@@ -5,6 +5,11 @@ project(${PROJECT})
 
 # 3rd party tools
 find_package(Qt5 COMPONENTS Widgets Qml Quick REQUIRED)
+find_package(PkgConfig)
+pkg_check_modules(GST REQUIRED gstreamer-1.0>=1.4
+                               gstreamer-sdp-1.0>=1.4
+                               gstreamer-video-1.0>=1.4
+                               gstreamer-app-1.0>=1.4)
 
 # Qt5 includes
 include_directories(${Qt5Widgets_INCLUDE_DIRS} ${QtQml_INCLUDE_DIRS})
@@ -31,6 +36,11 @@ target_link_libraries(${PROJECT}
     Qt5::Qml
     Qt5::Quick
 )
+
+# Gstreamer
+target_include_directories(${PROJECT} PRIVATE ${GST_INCLUDE_DIRS})
+target_compile_options(${PROJECT} PRIVATE ${GST_CFLAGS})
+target_link_libraries(${PROJECT} PRIVATE ${GST_LIBRARIES})
 
 # Install executable
 install(TARGETS ${PROJECT} DESTINATION ${CMAKE_INSTALL_PREFIX})

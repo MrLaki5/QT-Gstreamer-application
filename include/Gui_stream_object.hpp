@@ -5,6 +5,8 @@
 #include <QImage>
 #include <QObject>
 
+#include "Gstreamer_camera_capture.hpp"
+
 class Gui_stream_object : public QQuickPaintedItem
 {
 Q_OBJECT
@@ -19,4 +21,5 @@ public slots:
 
 protected:
     QImage _m_image;
+    Gstreamer_camera_capture gstreamer_camera_capture;
 };

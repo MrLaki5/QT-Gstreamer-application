@@ -11,7 +11,7 @@ ApplicationWindow
 
     Gui_stream_object {
         id: stream_object
-        anchors.right: parent.right
+        anchors.left: parent.left
         anchors.top: parent.top
 
         width: parent.width

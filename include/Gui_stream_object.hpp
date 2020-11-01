@@ -3,7 +3,7 @@
 #include <QQuickPaintedItem>
 #include <QPainter>
 #include <QImage>
-//#include <QObject>
+#include <QObject>
 
 class Gui_stream_object : public QQuickPaintedItem
 {

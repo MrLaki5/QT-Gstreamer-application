@@ -17,7 +17,7 @@ public:
     void paint(QPainter *painter) override;
 
 public slots:
-    void updateImage(const QImage&);
+    void updateImage(QImage* image);
 
 protected:
     QImage _m_image;

@@ -1,6 +1,7 @@
 #include "Gstreamer_camera_capture.hpp"
 
 #include <iostream>
+#include <QImage>
 
 static GstFlowReturn new_sample(GstElement *sink, gpointer data) 
 {
@@ -10,7 +11,15 @@ static GstFlowReturn new_sample(GstElement *sink, gpointer data)
     g_signal_emit_by_name(sink, "pull-sample", &sample);
     if(sample) 
     {
-        std::cout << "Frame captured!" << std::endl;
+        GstBuffer* buffer = gst_sample_get_buffer(sample);
+        GstMapInfo map;
+
+        gst_buffer_map(buffer, &map, GST_MAP_READ);
+        QImage test = QImage::fromData((const unsigned char*)map.data, map.size, "JPG");
+        QImage* image = new QImage(test);
+        reinterpret_cast<Gstreamer_camera_capture*>(data)->process_image(image);
+
+        gst_buffer_unmap(buffer, &map);
         gst_sample_unref(sample);
         return GST_FLOW_OK;
     }
@@ -18,10 +27,15 @@ static GstFlowReturn new_sample(GstElement *sink, gpointer data)
     return GST_FLOW_ERROR;
 }
 
+void Gstreamer_camera_capture::process_image(QImage* image)
+{
+    emit emit_image(image);
+}
+
 Gstreamer_camera_capture::Gstreamer_camera_capture()
 {
     // Build the pipeline
-    this->_pipeline = gst_parse_launch("v4l2src device=/dev/video2 ! image/jpeg, width=1280, height=720 ! jpegdec ! appsink name=\"app_sink\"", NULL);
+    this->_pipeline = gst_parse_launch("v4l2src device=/dev/video2 ! image/jpeg, width=1280, height=720 ! appsink name=\"app_sink\"", NULL);
 
     // Get app sink part of pipeline
     this->_app_sink = gst_bin_get_by_name(GST_BIN(_pipeline), "app_sink");

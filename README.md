@@ -1,5 +1,5 @@
-## GUI-application
-Simple QT GUI application that is used as example of how to create QT application with cmake
+## QT-Gstreamer-application
+Simple QT application with Gstreamer camera capture pipeline that is used as example of how to create QT-Gstreamer application with cmake
 
 ### Requirements:
 ``` bash

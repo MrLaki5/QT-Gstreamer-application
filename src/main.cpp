@@ -1,5 +1,6 @@
 #include <QApplication>
 #include <gst/gst.h>
+#include <boost/program_options.hpp>
 
 #include "Gui_application.hpp"
 

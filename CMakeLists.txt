@@ -45,7 +45,7 @@ target_include_directories(${PROJECT} PRIVATE ${GST_INCLUDE_DIRS})
 target_compile_options(${PROJECT} PRIVATE ${GST_CFLAGS})
 target_link_libraries(${PROJECT} PRIVATE ${GST_LIBRARIES})
 # Boost
-link_directories(${Boost_LIBRARY_DIR})
+target_link_libraries(${PROJECT} PRIVATE ${Boost_LIBRARIES})
 
 # Install executable
 install(TARGETS ${PROJECT} DESTINATION ${CMAKE_INSTALL_PREFIX})

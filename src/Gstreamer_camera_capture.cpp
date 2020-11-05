@@ -1,6 +1,5 @@
 #include "Gstreamer_camera_capture.hpp"
 
-#include <iostream>
 #include <QImage>
 
 static GstFlowReturn new_sample(GstElement *sink, gpointer data) 

@@ -2,8 +2,6 @@
 
 Gui_stream_object::Gui_stream_object(QQuickItem* parent): QQuickPaintedItem(parent)
 {
-    qRegisterMetaType<QImage*>("QImage*");
-    connect(&(this->gstreamer_camera_capture), &Gstreamer_camera_capture::emit_image, this, &Gui_stream_object::updateImage, Qt::QueuedConnection);
     // TODO: Remove in some point, thisi is just test to see if image is drawn
     QImage image(400, 400, QImage::Format_RGB32);
     image.fill(Qt::red);
@@ -11,7 +9,10 @@ Gui_stream_object::Gui_stream_object(QQuickItem* parent): QQuickPaintedItem(pare
 }
 
 Gui_stream_object::~Gui_stream_object()
-{}
+{
+    if (this->gstreamer_camera_capture)
+        delete this->gstreamer_camera_capture;
+}
 
 void Gui_stream_object::updateImage(QImage* image)
 {
@@ -23,4 +24,14 @@ void Gui_stream_object::updateImage(QImage* image)
 void Gui_stream_object::paint(QPainter* painter)
 {
     painter->drawImage(this->boundingRect(), this->_m_image);
+}
+
+void Gui_stream_object::init(std::string camera)
+{
+    if (this->gstreamer_camera_capture == nullptr)
+    {
+        this->gstreamer_camera_capture = new Gstreamer_camera_capture(camera);
+        qRegisterMetaType<QImage*>("QImage*");
+        connect(this->gstreamer_camera_capture, &Gstreamer_camera_capture::emit_image, this, &Gui_stream_object::updateImage, Qt::QueuedConnection);
+    }
 }

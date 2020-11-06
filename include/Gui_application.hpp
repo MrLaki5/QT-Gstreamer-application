@@ -8,6 +8,7 @@ class Gui_application
 {
 public:
     Gui_application();
+    void init(std::string camera);
 
 private:
     QQmlApplicationEngine _engine;

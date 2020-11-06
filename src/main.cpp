@@ -30,5 +30,6 @@ int main(int argc, char** argv)
     QApplication app(argc, argv);
     gst_init (&argc, &argv);
     Gui_application gui_application;
+    gui_application.init(camera_mount);
     return app.exec();
 }

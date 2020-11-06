@@ -9,6 +9,7 @@ ApplicationWindow
     height: 480
     title: qsTr("GUI application")
 
+    property var refToStreamObj: stream_object
     Gui_stream_object {
         id: stream_object
         anchors.left: parent.left

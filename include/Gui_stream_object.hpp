@@ -15,11 +15,12 @@ public:
     Gui_stream_object(QQuickItem* parent = nullptr);
     ~Gui_stream_object();
     void paint(QPainter *painter) override;
+    void init(std::string camera);
 
 public slots:
     void updateImage(QImage* image);
 
 protected:
     QImage _m_image;
-    Gstreamer_camera_capture gstreamer_camera_capture;
+    Gstreamer_camera_capture* gstreamer_camera_capture = nullptr;
 };

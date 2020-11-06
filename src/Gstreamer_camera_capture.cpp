@@ -31,10 +31,11 @@ void Gstreamer_camera_capture::process_image(QImage* image)
     emit emit_image(image);
 }
 
-Gstreamer_camera_capture::Gstreamer_camera_capture()
+Gstreamer_camera_capture::Gstreamer_camera_capture(std::string camera)
 {
     // Build the pipeline
-    this->_pipeline = gst_parse_launch("v4l2src device=/dev/video2 ! image/jpeg, width=1280, height=720 ! appsink name=\"app_sink\"", NULL);
+    std::string pipeline_str = "v4l2src device=" + camera + " ! image/jpeg, width=1280, height=720 ! appsink name=\"app_sink\"";
+    this->_pipeline = gst_parse_launch(pipeline_str.c_str(), NULL);
 
     // Get app sink part of pipeline
     this->_app_sink = gst_bin_get_by_name(GST_BIN(_pipeline), "app_sink");

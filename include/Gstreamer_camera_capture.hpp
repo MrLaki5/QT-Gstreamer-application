@@ -8,7 +8,7 @@ class Gstreamer_camera_capture: public QObject
     Q_OBJECT
 
 public:
-    Gstreamer_camera_capture();
+    Gstreamer_camera_capture(std::string camera);
     ~Gstreamer_camera_capture();
     void process_image(QImage* image);
 

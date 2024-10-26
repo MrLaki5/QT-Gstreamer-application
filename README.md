@@ -1,5 +1,5 @@
 ## QT-Gstreamer-application
-Simple QT-Gstreamer camera application that is used as example of how to create QT-Gstreamer application with cmake
+Simple QT-Gstreamer camera stream application with CMake
 
 ### Requirements:
 ``` bash
